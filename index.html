@@ -1,36 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors - Game Ready</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="app">
+    <header class="header card">
+      <h1>Rock Paper Scissors</h1>
+      <p class="subtitle">First to <span id="targetWinsLabel">5</span> wins takes the match.</p>
+      <div class="controls">
+        <label for="targetWins">Match Length</label>
+        <select id="targetWins" aria-label="Select target wins">
+          <option value="3">Best of 5 (3 wins)</option>
+          <option value="5" selected>Best of 9 (5 wins)</option>
+          <option value="7">Best of 13 (7 wins)</option>
+        </select>
+        <button id="newMatchBtn" type="button">New Match</button>
+      </div>
+    </header>
 
-    <h1 id="welcome">Rock Paper Scissors</h1>
+    <section class="scoreboard card" aria-live="polite">
+      <div class="score-block player">
+        <p class="label">You</p>
+        <p id="playerScore" class="score">0</p>
+      </div>
+      <div class="status-center">
+        <p id="statusText" class="status">Choose your move to start.</p>
+        <p id="roundCount" class="round">Round 0</p>
+      </div>
+      <div class="score-block computer">
+        <p class="label">Computer</p>
+        <p id="computerScore" class="score">0</p>
+      </div>
+    </section>
 
-    <div class="instructions">
-        <p><strong>How to play:</strong></p>
-        <ul>
-            <li>Enter Rock, Paper, or Scissors</li>
-            <li>Computer chooses randomly</li>
-            <li>Winner will be shown below</li>
-        </ul>
-    </div>
+    <section class="arena card">
+      <h2>Pick Your Move</h2>
+      <div class="move-grid" role="group" aria-label="Move selection">
+        <button class="move-btn" data-move="rock" type="button" aria-label="Rock">
+          <span class="emoji">✊</span>
+          <span>Rock</span>
+        </button>
+        <button class="move-btn" data-move="paper" type="button" aria-label="Paper">
+          <span class="emoji">✋</span>
+          <span>Paper</span>
+        </button>
+        <button class="move-btn" data-move="scissors" type="button" aria-label="Scissors">
+          <span class="emoji">✌️</span>
+          <span>Scissors</span>
+        </button>
+      </div>
+      <div class="last-round" id="lastRound" aria-live="polite">
+        <p><strong>You:</strong> <span id="lastPlayerMove">-</span></p>
+        <p><strong>Computer:</strong> <span id="lastComputerMove">-</span></p>
+      </div>
+    </section>
 
-    <div class="game">
-        <label for="userChoice">Player's Choice:</label>
-        <input type="text" id="userChoice" placeholder="rock / paper / scissors">
-        <button id="btn">Play</button>
-    </div>
+    <section class="history card">
+      <div class="history-head">
+        <h2>Round History</h2>
+        <button id="clearHistoryBtn" type="button">Clear History</button>
+      </div>
+      <ul id="historyList" class="history-list">
+        <li class="history-empty">No rounds played yet.</li>
+      </ul>
+    </section>
 
-    <div class="result">
-        <p id="userResult"></p>
-        <p id="computerResult"></p>
-        <h2 id="winner"></h2>
-    </div>
+    <section class="stats card">
+      <h2>All-Time Stats (This Browser)</h2>
+      <div class="stats-grid">
+        <div><span id="totalGames">0</span><small>Rounds Played</small></div>
+        <div><span id="totalWins">0</span><small>Your Wins</small></div>
+        <div><span id="totalLosses">0</span><small>Computer Wins</small></div>
+        <div><span id="totalTies">0</span><small>Ties</small></div>
+      </div>
+    </section>
+  </main>
 
-    <script src="rock.js" defer></script>
+  <script src="rock.js" defer></script>
 </body>
 </html>
